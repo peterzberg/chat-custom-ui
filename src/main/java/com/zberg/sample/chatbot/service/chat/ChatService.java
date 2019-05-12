@@ -5,6 +5,7 @@ import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,12 +17,18 @@ import java.util.stream.Collectors;
 @Service
 public class ChatService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatService.class);
-    private static final String DIALOGFLOW_PROJECT_ID = "css-sia-poc";
+    private final String projectId;
+
+    public ChatService(final Environment env){
+
+        projectId = env.getProperty("DIALOGFLOW_PROJECT_ID");
+    }
+
 
     public Response sendMessage(final String text, final String sessionId, final String language) throws IOException {
         try (SessionsClient sessionsClient = SessionsClient.create()) {
             LOGGER.info("Goint to send message to dialogflow: {}", text);
-            final SessionName session = SessionName.of(DIALOGFLOW_PROJECT_ID, sessionId);
+            final SessionName session = SessionName.of(projectId, sessionId);
             final TextInput textInput = TextInput.newBuilder().setText(text).setLanguageCode(language).build();
             final QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
             final DetectIntentResponse response = sessionsClient.detectIntent(session, queryInput);
