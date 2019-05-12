@@ -1,0 +1,25 @@
+package com.zberg.sample.chatbot.service;
+
+import com.zberg.sample.chatbot.service.chat.Response;
+import com.zberg.sample.chatbot.service.response.DefaultResponseHandler;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ResponseHandlerService {
+
+    private final List<ResponseHandler> responseHandlers;
+
+    public ResponseHandlerService(final List<ResponseHandler> responseHandlers) {
+
+        this.responseHandlers = responseHandlers;
+    }
+
+
+    public ResponseHandler getResponseHandlerFor(final Response chatResponse){
+
+        return this.responseHandlers.stream().filter(rh -> rh.handles(chatResponse)).findFirst().orElse(new DefaultResponseHandler());
+
+    }
+}
