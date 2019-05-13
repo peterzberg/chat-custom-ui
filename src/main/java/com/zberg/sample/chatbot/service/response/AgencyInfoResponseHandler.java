@@ -7,6 +7,7 @@ import com.zberg.sample.chatbot.service.chat.Response;
 import com.zberg.sample.chatbot.service.response.text.AbstractResponse;
 import com.zberg.sample.chatbot.service.response.text.AgencyResponse;
 import com.zberg.sample.chatbot.service.response.text.TextResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -24,7 +25,8 @@ public class AgencyInfoResponseHandler implements ResponseHandler {
 
     @Override
     public boolean handles(Response chatResponse) {
-        return "agency_info".equalsIgnoreCase(chatResponse.getIntent()) && chatResponse.getParameters().containsKey("geo-city");
+        return "agency_info".equalsIgnoreCase(chatResponse.getIntent())
+                && StringUtils.isNotEmpty(chatResponse.getParameters().get("geo-city"));
     }
 
     @Override
@@ -33,12 +35,23 @@ public class AgencyInfoResponseHandler implements ResponseHandler {
         final String cityName = response.getParameters().get("geo-city"); // lookup should be better. for poc ok :)
         final Optional<Agency> agency = agencyRepository.getAgencyByCityName(cityName);
 
-        if (agency.isPresent()) {
-            final AgencyResponse result = new AgencyResponse();
-            result.setAgency(agency.get());
-            return result;
-        }
+        final AbstractResponse result;
 
+        if (agency.isPresent()) {
+            result = createAgencyResponse(agency.get());
+        } else {
+            result = buildFallbackTextResponse(cityName);
+        }
+        return result;
+    }
+
+    private AbstractResponse createAgencyResponse(final Agency agency) {
+        final AgencyResponse agencyResponse = new AgencyResponse();
+        agencyResponse.setAgency(agency);
+        return agencyResponse;
+    }
+
+    private AbstractResponse buildFallbackTextResponse(final String cityName) {
         final String text = "Leider habe ich zu Agentur '" + cityName + "' nichts gefunden."; // TODO: Lookup from resource file by language with multiple options to look smarter
         final TextResponse textResponse = new TextResponse();
         textResponse.setText(Collections.singletonList(text));
