@@ -1,8 +1,8 @@
 package com.zberg.sample.chatbot.service.conversation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zberg.sample.chatbot.service.ResponseHandler;
-import com.zberg.sample.chatbot.service.ResponseHandlerService;
+import com.zberg.sample.chatbot.service.response.ResponseHandler;
+import com.zberg.sample.chatbot.service.response.ResponseHandlerService;
 import com.zberg.sample.chatbot.service.chat.ChatService;
 import com.zberg.sample.chatbot.service.chat.Response;
 import com.zberg.sample.chatbot.service.response.text.AbstractResponse;

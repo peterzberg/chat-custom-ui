@@ -1,4 +1,4 @@
-package com.zberg.sample.chatbot.service;
+package com.zberg.sample.chatbot.service.response;
 
 import com.zberg.sample.chatbot.service.chat.Response;
 import com.zberg.sample.chatbot.service.response.text.AbstractResponse;

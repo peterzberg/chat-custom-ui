@@ -1,6 +1,7 @@
 package com.zberg.sample.chatbot.service.chat;
 
 import com.google.cloud.dialogflow.v2.*;
+import com.google.protobuf.ListValue;
 import com.google.protobuf.Struct;
 import com.google.protobuf.Value;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +52,20 @@ public class ChatService {
         final Map<String, String> result = new HashMap<>();
         if (null != parameters){
             final Map<String, Value> fieldsMap = parameters.getFieldsMap();
-            fieldsMap.forEach((key, value) -> result.put(key, value.getStringValue()));
+            fieldsMap.forEach((key, value) -> {
+                if (value.hasListValue()){
+                    final ListValue listValues = value.getListValue();
+                    final List<String> stringValues = new ArrayList<>();
+                    for (int i = 0; i < listValues.getValuesCount(); i++){
+                        final Value listValue = listValues.getValues(i);
+                        stringValues.add(listValue.getStringValue());
+                    }
+                    final String paramValue = String.join(",", stringValues);
+                    result.put(key, paramValue);
+                } else {
+                    result.put(key, value.getStringValue());
+                }
+            });
         }
         return result;
     }

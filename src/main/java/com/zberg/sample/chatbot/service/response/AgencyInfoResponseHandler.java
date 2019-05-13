@@ -2,7 +2,6 @@ package com.zberg.sample.chatbot.service.response;
 
 import com.zberg.sample.chatbot.repositories.coredata.Agency;
 import com.zberg.sample.chatbot.repositories.coredata.AgencyRepository;
-import com.zberg.sample.chatbot.service.ResponseHandler;
 import com.zberg.sample.chatbot.service.chat.Response;
 import com.zberg.sample.chatbot.service.response.text.AbstractResponse;
 import com.zberg.sample.chatbot.service.response.text.AgencyResponse;
