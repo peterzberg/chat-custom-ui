@@ -7,7 +7,7 @@ public class AbstractAction extends AbstractResponse {
     private final Action action;
 
 
-    AbstractAction(final Action action){
+    AbstractAction(final Action action) {
         super(ResponseType.ACTION);
         this.action = action;
     }

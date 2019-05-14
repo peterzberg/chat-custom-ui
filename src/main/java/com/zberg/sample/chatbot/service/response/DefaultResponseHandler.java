@@ -1,9 +1,9 @@
 package com.zberg.sample.chatbot.service.response;
 
 import com.zberg.sample.chatbot.service.chat.Response;
-import org.springframework.stereotype.Service;
 import com.zberg.sample.chatbot.service.response.text.AbstractResponse;
 import com.zberg.sample.chatbot.service.response.text.TextResponse;
+import org.springframework.stereotype.Service;
 
 
 @Service

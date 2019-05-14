@@ -16,7 +16,7 @@ public class ResponseHandlerService {
     }
 
 
-    public ResponseHandler getResponseHandlerFor(final Response chatResponse){
+    public ResponseHandler getResponseHandlerFor(final Response chatResponse) {
 
         return this.responseHandlers.stream().filter(rh -> rh.handles(chatResponse)).findFirst().orElse(new DefaultResponseHandler());
 

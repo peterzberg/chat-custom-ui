@@ -24,7 +24,7 @@ public class ChatService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatService.class);
     private final String projectId;
 
-    public ChatService(final Environment env){
+    public ChatService(final Environment env) {
 
         projectId = env.getProperty("DIALOGFLOW_PROJECT_ID");
     }
@@ -55,13 +55,13 @@ public class ChatService {
 
     private Map<String, String> extractParameters(final Struct parameters) {
         final Map<String, String> result = new HashMap<>();
-        if (null != parameters){
+        if (null != parameters) {
             final Map<String, Value> fieldsMap = parameters.getFieldsMap();
             fieldsMap.forEach((key, value) -> {
-                if (value.hasListValue()){
+                if (value.hasListValue()) {
                     final ListValue listValues = value.getListValue();
                     final List<String> stringValues = new ArrayList<>();
-                    for (int i = 0; i < listValues.getValuesCount(); i++){
+                    for (int i = 0; i < listValues.getValuesCount(); i++) {
                         final Value listValue = listValues.getValues(i);
                         stringValues.add(listValue.getStringValue());
                     }

@@ -3,7 +3,7 @@ package com.zberg.sample.chatbot.api.models;
 public class Conversation {
     private String id;
 
-    public Conversation(){
+    public Conversation() {
         // default
     }
 

@@ -14,7 +14,7 @@ public class GoogleCredentialsProvider {
     }
 
     public static ServiceAccountCredentials get() {
-        if (null == credentials){
+        if (null == credentials) {
             credentials = loadCredentials();
         }
         return credentials;
