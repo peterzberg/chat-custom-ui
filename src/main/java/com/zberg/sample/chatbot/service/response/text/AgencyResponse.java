@@ -1,6 +1,5 @@
 package com.zberg.sample.chatbot.service.response.text;
 
-import com.zberg.sample.chatbot.api.models.ResponseType;
 import com.zberg.sample.chatbot.repositories.coredata.Agency;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

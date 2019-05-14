@@ -2,8 +2,6 @@ package com.zberg.sample.chatbot.service.chat;
 
 import com.google.api.gax.core.CredentialsProvider;
 import com.google.api.gax.core.FixedCredentialsProvider;
-import com.google.auth.oauth2.ServiceAccountCredentials;
-import com.google.auth.oauth2.ServiceAccountJwtAccessCredentials;
 import com.google.cloud.dialogflow.v2.*;
 import com.google.protobuf.ListValue;
 import com.google.protobuf.Struct;
@@ -14,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +46,7 @@ public class ChatService {
             chatResponse.setIntent(queryResult.getIntent().getDisplayName());
             final Map<String, String> paramMap = extractParameters(queryResult.getParameters());
             chatResponse.setParameters(paramMap);
-
+            chatResponse.setAllRequiredParamsSet(queryResult.getAllRequiredParamsPresent());
             final List<String> messages = queryResult.getFulfillmentMessagesList().stream().flatMap(m -> m.getText().getTextList().stream()).collect(Collectors.toList());
             chatResponse.setText(messages);
             return chatResponse;

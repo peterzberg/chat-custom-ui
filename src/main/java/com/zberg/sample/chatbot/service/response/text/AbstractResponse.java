@@ -1,6 +1,5 @@
 package com.zberg.sample.chatbot.service.response.text;
 
-import com.zberg.sample.chatbot.api.models.ResponseType;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

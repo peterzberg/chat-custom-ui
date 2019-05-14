@@ -9,6 +9,7 @@ public class Response {
     private String intent;
     private List<String> text;
     private Map<String, String> parameters;
+    private boolean allRequiredParamsSet;
 
     public String getIntent() {
         return intent;
@@ -34,12 +35,21 @@ public class Response {
         return parameters;
     }
 
+    public boolean isAllRequiredParamsSet() {
+        return allRequiredParamsSet;
+    }
+
+    public void setAllRequiredParamsSet(boolean allRequiredParamsSet) {
+        this.allRequiredParamsSet = allRequiredParamsSet;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("intent", intent)
                 .append("text", text)
                 .append("parameters", parameters)
+                .append("allRequiredParamsSet", allRequiredParamsSet)
                 .toString();
     }
 }

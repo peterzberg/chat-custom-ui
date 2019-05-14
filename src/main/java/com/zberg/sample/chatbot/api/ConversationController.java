@@ -3,6 +3,12 @@ package com.zberg.sample.chatbot.api;
 import com.zberg.sample.chatbot.api.models.Conversation;
 import com.zberg.sample.chatbot.api.models.Message;
 import com.zberg.sample.chatbot.service.conversation.ConversationService;
+import com.zberg.sample.chatbot.service.response.text.AbstractResponse;
+import com.zberg.sample.chatbot.service.response.text.AddressChangeResponse;
+import com.zberg.sample.chatbot.service.response.text.AgencyResponse;
+import com.zberg.sample.chatbot.service.response.text.TextResponse;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -28,8 +34,8 @@ public class ConversationController {
 
     @PostMapping(path = "{id}/{lang}/message", produces = "application/json")
     public ResponseEntity<String> sendMessage(@PathVariable("id") final String id, @PathVariable("lang") final String language, @RequestBody final Message message) {
-        try {
 
+        try {
             return ResponseEntity.ok(conversationService.converse(message.getText(), id, language));
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
