@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.UUID;
 
 @CrossOrigin
-@RestController("/api/conversation")
+@RestController
+@RequestMapping("/api/conversation")
 public class ConversationController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
 
