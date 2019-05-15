@@ -15,7 +15,7 @@ mvn clean package
 
 ## Start project with env variables set
 ```
-GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials
+DIALOGFLOW_CREDENTIALS=my-credential-json-as-string
 DIALOGFLOW_PROJECT_ID=my-project-name
 ```
 
