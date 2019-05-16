@@ -1,14 +1,14 @@
 package com.zberg.sample.chatbot.service.conversation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zberg.sample.chatbot.service.chat.ChatException;
 import com.zberg.sample.chatbot.service.chat.ChatService;
 import com.zberg.sample.chatbot.service.chat.Response;
 import com.zberg.sample.chatbot.service.response.ResponseHandler;
 import com.zberg.sample.chatbot.service.response.ResponseHandlerService;
 import com.zberg.sample.chatbot.service.response.text.AbstractResponse;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 @Service
 public class ConversationService {
@@ -22,12 +22,20 @@ public class ConversationService {
         this.responseHandlerService = responseHandlerService;
     }
 
-    public String converse(final String text, final String sessionId, final String language) throws IOException {
+    public String converse(final String text, final String sessionId, final String language) throws ChatException {
 
         final Response response = chatService.sendMessage(text, sessionId, language);
         final ResponseHandler responseHandler = responseHandlerService.getResponseHandlerFor(response);
         final AbstractResponse answer = responseHandler.handleResponse(response);
 
+        try {
+            return createResponseJson(answer);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Unable to create json", e);
+        }
+    }
+
+    private String createResponseJson(AbstractResponse answer) throws JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(answer);
     }

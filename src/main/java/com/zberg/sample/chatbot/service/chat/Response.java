@@ -10,6 +10,7 @@ public class Response {
     private List<String> text;
     private Map<String, String> parameters;
     private boolean allRequiredParamsSet;
+    private String currentSlot;
 
     public String getIntent() {
         return intent;
@@ -43,6 +44,15 @@ public class Response {
         this.allRequiredParamsSet = allRequiredParamsSet;
     }
 
+    public void setCurrentSlot(String currentSlot) {
+
+        this.currentSlot = currentSlot;
+    }
+
+    public String getCurrentSlot() {
+        return currentSlot;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -50,6 +60,7 @@ public class Response {
                 .append("text", text)
                 .append("parameters", parameters)
                 .append("allRequiredParamsSet", allRequiredParamsSet)
+                .append("currentSlot", currentSlot)
                 .toString();
     }
 }
