@@ -8,21 +8,26 @@ public class AgencyResponse extends AbstractResponse {
     private Agency agency;
 
     public AgencyResponse() {
+
         super(ResponseType.AGENCY_INFO);
     }
 
     public Agency getAgency() {
+
         return agency;
     }
 
     public void setAgency(Agency agency) {
+
         this.agency = agency;
     }
 
     @Override
     public String toString() {
+
         return new ToStringBuilder(this)
                 .append("agency", agency)
                 .toString();
     }
+
 }

@@ -8,18 +8,22 @@ public class AbstractAction extends AbstractResponse {
 
 
     AbstractAction(final Action action) {
+
         super(ResponseType.ACTION);
         this.action = action;
     }
 
     public Action getAction() {
+
         return action;
     }
 
     @Override
     public String toString() {
+
         return new ToStringBuilder(this)
                 .append("action", action)
                 .toString();
     }
+
 }

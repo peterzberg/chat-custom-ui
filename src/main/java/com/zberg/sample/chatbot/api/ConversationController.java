@@ -2,6 +2,7 @@ package com.zberg.sample.chatbot.api;
 
 import com.zberg.sample.chatbot.api.models.Conversation;
 import com.zberg.sample.chatbot.api.models.Message;
+import com.zberg.sample.chatbot.service.chat.ChatException;
 import com.zberg.sample.chatbot.service.conversation.ConversationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,13 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.UUID;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api/conversation")
 public class ConversationController {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ConversationController.class);
 
     private final ConversationService conversationService;
@@ -30,7 +31,8 @@ public class ConversationController {
 
         try {
             return ResponseEntity.ok(conversationService.converse(message.getText(), id, language));
-        } catch (IOException e) {
+        } catch (final ChatException e) {
+            LOGGER.error("Error occured during conversation", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -42,4 +44,5 @@ public class ConversationController {
         LOGGER.info("created new conversation: {}", newConversation);
         return ResponseEntity.ok(newConversation);
     }
+
 }

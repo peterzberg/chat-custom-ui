@@ -10,14 +10,17 @@ import org.springframework.stereotype.Service;
 public class DefaultResponseHandler implements ResponseHandler {
 
     @Override
-    public boolean handles(Response chatResponse) {
+    public boolean handles(final Response chatResponse) {
+
         return false; // should be fallback
     }
 
     @Override
-    public AbstractResponse handleResponse(Response response) {
+    public AbstractResponse handleResponse(final Response response) {
+
         final TextResponse textResponse = new TextResponse();
         textResponse.setText(response.getText());
         return textResponse;
     }
+
 }

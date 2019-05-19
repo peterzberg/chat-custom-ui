@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Agency {
+
     private String agenturNr;
     private String agenturName;
     private String strasse;
@@ -22,119 +23,148 @@ public class Agency {
     private List<OpeningHours> zeiten = new ArrayList<>();
 
     public String getAgenturNr() {
+
         return agenturNr;
     }
 
-    public void setAgenturNr(String agenturNr) {
+    public void setAgenturNr(final String agenturNr) {
+
         this.agenturNr = agenturNr;
     }
 
     public String getAgenturName() {
+
         return agenturName;
     }
 
-    public void setAgenturName(String agenturName) {
+    public void setAgenturName(final String agenturName) {
+
         this.agenturName = agenturName;
     }
 
     public String getStrasse() {
+
         return strasse;
     }
 
-    public void setStrasse(String strasse) {
+    public void setStrasse(final String strasse) {
+
         this.strasse = strasse;
     }
 
     public String getHausnummer() {
+
         return hausnummer;
     }
 
-    public void setHausnummer(String hausnummer) {
+    public void setHausnummer(final String hausnummer) {
+
         this.hausnummer = hausnummer;
     }
 
     public int getPlz() {
+
         return plz;
     }
 
-    public void setPlz(int plz) {
+    public void setPlz(final int plz) {
+
         this.plz = plz;
     }
 
     public String getOrt() {
+
         return ort;
     }
 
-    public void setOrt(String ort) {
+    public void setOrt(final String ort) {
+
         this.ort = ort;
     }
 
     public String getTelefon() {
+
         return telefon;
     }
 
-    public void setTelefon(String telefon) {
+    public void setTelefon(final String telefon) {
+
         this.telefon = telefon;
     }
 
     public String getFax() {
+
         return fax;
     }
 
-    public void setFax(String fax) {
+    public void setFax(final String fax) {
+
         this.fax = fax;
     }
 
     public String getEmail() {
+
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
+
         this.email = email;
     }
 
     public String getGeneralAgenturNr() {
+
         return generalAgenturNr;
     }
 
-    public void setGeneralAgenturNr(String generalAgenturNr) {
+    public void setGeneralAgenturNr(final String generalAgenturNr) {
+
         this.generalAgenturNr = generalAgenturNr;
     }
 
     public String getGeneralAgenturName() {
+
         return generalAgenturName;
     }
 
-    public void setGeneralAgenturName(String generalAgenturName) {
+    public void setGeneralAgenturName(final String generalAgenturName) {
+
         this.generalAgenturName = generalAgenturName;
     }
 
     public double getLatitude() {
+
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(final double latitude) {
+
         this.latitude = latitude;
     }
 
     public double getLongitude() {
+
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(final double longitude) {
+
         this.longitude = longitude;
     }
 
     public List<OpeningHours> getZeiten() {
+
         return zeiten;
     }
 
-    public void setZeiten(List<OpeningHours> zeiten) {
+    public void setZeiten(final List<OpeningHours> zeiten) {
+
         this.zeiten = zeiten;
     }
 
     @Override
     public String toString() {
+
         return new ToStringBuilder(this)
                 .append("agenturNr", agenturNr)
                 .append("agenturName", agenturName)
@@ -152,4 +182,5 @@ public class Agency {
                 .append("zeiten", zeiten)
                 .toString();
     }
+
 }

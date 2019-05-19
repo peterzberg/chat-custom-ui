@@ -11,9 +11,11 @@ public class GoogleCredentialsProvider {
     private static ServiceAccountCredentials credentials;
 
     private GoogleCredentialsProvider() {
+
     }
 
     public static ServiceAccountCredentials get() {
+
         if (null == credentials) {
             credentials = loadCredentials();
         }
@@ -21,13 +23,14 @@ public class GoogleCredentialsProvider {
     }
 
     private static ServiceAccountCredentials loadCredentials() {
+
         final String credentialsJson = System.getenv("DIALOGFLOW_CREDENTIALS");
         if (null == credentialsJson) {
             throw new IllegalStateException("Environment variable 'DIALOGFLOW_CREDENTIALS' is not set");
         }
         try {
             return ServiceAccountCredentials.fromStream(new ByteArrayInputStream(credentialsJson.getBytes(Charset.forName("UTF-8"))));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new IllegalStateException("could not read credentials");
         }
     }

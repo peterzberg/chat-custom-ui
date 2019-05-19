@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @Repository
 public class AgencyRepositoryImpl implements AgencyRepository {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AgencyRepositoryImpl.class);
 
     private final String coreDataAccessorUrl;
@@ -46,9 +47,10 @@ public class AgencyRepositoryImpl implements AgencyRepository {
         try {
             final Agency agency = template.getForObject(coreDataAccessorUrl + "/" + agencyNr, Agency.class);
             return Optional.ofNullable(agency);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return Optional.empty();
         }
 
     }
+
 }

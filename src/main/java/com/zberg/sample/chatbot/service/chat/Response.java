@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Response {
+
     private String intent;
     private List<String> text;
     private Map<String, String> parameters;
@@ -13,48 +14,58 @@ public class Response {
     private String currentSlot;
 
     public String getIntent() {
+
         return intent;
     }
 
-    public void setIntent(String intent) {
+    public void setIntent(final String intent) {
+
         this.intent = intent;
     }
 
     public List<String> getText() {
+
         return text;
     }
 
-    public void setText(List<String> text) {
+    public void setText(final List<String> text) {
+
         this.text = text;
     }
 
-    public void setParameters(final Map<String, String> parameters) {
-        this.parameters = parameters;
-    }
-
     public Map<String, String> getParameters() {
+
         return parameters;
     }
 
+    public void setParameters(final Map<String, String> parameters) {
+
+        this.parameters = parameters;
+    }
+
     public boolean isAllRequiredParamsSet() {
+
         return allRequiredParamsSet;
     }
 
-    public void setAllRequiredParamsSet(boolean allRequiredParamsSet) {
+    public void setAllRequiredParamsSet(final boolean allRequiredParamsSet) {
+
         this.allRequiredParamsSet = allRequiredParamsSet;
     }
 
-    public void setCurrentSlot(String currentSlot) {
+    public String getCurrentSlot() {
+
+        return currentSlot;
+    }
+
+    public void setCurrentSlot(final String currentSlot) {
 
         this.currentSlot = currentSlot;
     }
 
-    public String getCurrentSlot() {
-        return currentSlot;
-    }
-
     @Override
     public String toString() {
+
         return new ToStringBuilder(this)
                 .append("intent", intent)
                 .append("text", text)
@@ -63,4 +74,5 @@ public class Response {
                 .append("currentSlot", currentSlot)
                 .toString();
     }
+
 }

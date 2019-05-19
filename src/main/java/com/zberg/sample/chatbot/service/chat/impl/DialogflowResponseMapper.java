@@ -11,13 +11,14 @@ import com.zberg.sample.chatbot.service.chat.Response;
 import java.util.*;
 import java.util.stream.Collectors;
 
-class ResponseMapper {
+class DialogflowResponseMapper {
 
-    private ResponseMapper() {
+    private DialogflowResponseMapper() {
         //
     }
 
     static Response toResponse(final DetectIntentResponse detectIntentResponse) {
+
         final QueryResult queryResult = detectIntentResponse.getQueryResult();
         final Response chatResponse = new Response();
         chatResponse.setIntent(queryResult.getIntent().getDisplayName());
@@ -32,12 +33,13 @@ class ResponseMapper {
     }
 
     private static String determineCurrentSlot(final Struct parameters, final QueryResult queryResult) {
+
         final Map<String, Value> fieldsMap = parameters.getFieldsMap();
         if (null != fieldsMap && !fieldsMap.isEmpty()) {
             final List<Context> outputContextsList = queryResult.getOutputContextsList();
             final Optional<String> currentParam = outputContextsList.stream()
                     .filter(c -> hasParamInName(c, fieldsMap))
-                    .map(ResponseMapper::extractParameterNameFromContext)
+                    .map(DialogflowResponseMapper::extractParameterNameFromContext)
                     .findFirst();
             return currentParam.orElse(null);
         }
@@ -45,17 +47,19 @@ class ResponseMapper {
     }
 
     private static String extractParameterNameFromContext(final Context context) {
+
         final String[] params = context.getName().split("dialog_params_");
         return params[1];
-
     }
 
     private static boolean hasParamInName(final Context context, final Map<String, Value> fieldsMap) {
+
         final String name = context.getName();
         return fieldsMap.keySet().stream().anyMatch(name::endsWith);
     }
 
     private static Map<String, String> extractParameters(final Struct parameters) {
+
         final Map<String, String> result = new HashMap<>();
         if (null != parameters) {
             final Map<String, Value> fieldsMap = parameters.getFieldsMap();
@@ -76,4 +80,5 @@ class ResponseMapper {
         }
         return result;
     }
+
 }

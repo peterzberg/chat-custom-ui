@@ -11,13 +11,15 @@ import org.springframework.stereotype.Service;
 public class AddressChangeResponseHandler implements ResponseHandler {
 
     @Override
-    public boolean handles(Response chatResponse) {
+    public boolean handles(final Response chatResponse) {
+
         return "address_change".equalsIgnoreCase(chatResponse.getIntent())
                 && chatResponse.isAllRequiredParamsSet();
     }
 
     @Override
-    public AbstractResponse handleResponse(Response response) {
+    public AbstractResponse handleResponse(final Response response) {
+
         final AddressChangeResponse result = new AddressChangeResponse();
         result.setCity(StringUtils.trimToNull(response.getParameters().get("geo-city")));
         result.setZip(StringUtils.trimToNull(response.getParameters().get("zip-code")));
@@ -25,4 +27,5 @@ public class AddressChangeResponseHandler implements ResponseHandler {
         result.setStreet(StringUtils.trimToNull(response.getParameters().get("address")));
         return result;
     }
+
 }

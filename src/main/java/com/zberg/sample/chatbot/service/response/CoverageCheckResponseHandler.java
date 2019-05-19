@@ -19,17 +19,20 @@ public class CoverageCheckResponseHandler implements ResponseHandler {
     }
 
     @Override
-    public boolean handles(Response chatResponse) {
+    public boolean handles(final Response chatResponse) {
+
         return "check_coverage".equalsIgnoreCase(chatResponse.getIntent())
                 && StringUtils.isNotEmpty(chatResponse.getParameters().get("coverage_synonyms"));
     }
 
     @Override
-    public AbstractResponse handleResponse(Response response) {
+    public AbstractResponse handleResponse(final Response response) {
+
         final String synonymParam = response.getParameters().get("coverage_synonyms");
         final String[] synonyms = synonymParam.split(",");
         final TextResponse textResponse = new TextResponse();
         textResponse.setText(coverageService.getCoverage(synonyms));
         return textResponse;
     }
+
 }

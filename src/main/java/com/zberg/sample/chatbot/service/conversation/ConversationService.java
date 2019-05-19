@@ -30,12 +30,13 @@ public class ConversationService {
 
         try {
             return createResponseJson(answer);
-        } catch (JsonProcessingException e) {
+        } catch (final JsonProcessingException e) {
             throw new IllegalStateException("Unable to create json", e);
         }
     }
 
-    private String createResponseJson(AbstractResponse answer) throws JsonProcessingException {
+    private String createResponseJson(final AbstractResponse answer) throws JsonProcessingException {
+
         final ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(answer);
     }

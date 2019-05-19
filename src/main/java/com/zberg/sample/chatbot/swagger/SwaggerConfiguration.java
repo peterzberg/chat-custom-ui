@@ -17,6 +17,7 @@ public class SwaggerConfiguration {
 
     @Bean
     public Docket api() {
+
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors
                         .basePackage("com.zberg.sample.chatbot.api"))
@@ -25,9 +26,11 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiEndPointsInfo() {
+
         return new ApiInfoBuilder().title("Dialogflow REST API")
                 .description("Dialogflow REST API")
                 .contact(new Contact("Peter Zberg", "", "peter.zberg@gmail.ch"))
                 .build();
     }
+
 }

@@ -23,13 +23,14 @@ public class AgencyInfoResponseHandler implements ResponseHandler {
     }
 
     @Override
-    public boolean handles(Response chatResponse) {
+    public boolean handles(final Response chatResponse) {
+
         return "agency_info".equalsIgnoreCase(chatResponse.getIntent())
                 && StringUtils.isNotEmpty(chatResponse.getParameters().get("geo-city"));
     }
 
     @Override
-    public AbstractResponse handleResponse(Response response) {
+    public AbstractResponse handleResponse(final Response response) {
 
         final String cityName = response.getParameters().get("geo-city"); // lookup should be better. for poc ok :)
         final Optional<Agency> agency = agencyRepository.getAgencyByCityName(cityName);
@@ -45,15 +46,18 @@ public class AgencyInfoResponseHandler implements ResponseHandler {
     }
 
     private AbstractResponse createAgencyResponse(final Agency agency) {
+
         final AgencyResponse agencyResponse = new AgencyResponse();
         agencyResponse.setAgency(agency);
         return agencyResponse;
     }
 
     private AbstractResponse buildFallbackTextResponse(final String cityName) {
+
         final String text = "Leider habe ich zu Agentur '" + cityName + "' nichts gefunden."; // TODO: Lookup from resource file by language with multiple options to look smarter
         final TextResponse textResponse = new TextResponse();
         textResponse.setText(Collections.singletonList(text));
         return textResponse;
     }
+
 }
