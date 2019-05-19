@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package com.zberg.sample.chatbot;
 
 import org.springframework.boot.SpringApplication;

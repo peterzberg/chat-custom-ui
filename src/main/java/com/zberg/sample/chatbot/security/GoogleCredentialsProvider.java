@@ -6,7 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public class GoogleCredentialsProvider {
+public final class GoogleCredentialsProvider {
 
     private static ServiceAccountCredentials credentials;
 
@@ -29,7 +29,9 @@ public class GoogleCredentialsProvider {
             throw new IllegalStateException("Environment variable 'DIALOGFLOW_CREDENTIALS' is not set");
         }
         try {
-            return ServiceAccountCredentials.fromStream(new ByteArrayInputStream(credentialsJson.getBytes(Charset.forName("UTF-8"))));
+            final Charset charset = Charset.forName("UTF-8");
+            final ByteArrayInputStream credentialsStream = new ByteArrayInputStream(credentialsJson.getBytes(charset));
+            return ServiceAccountCredentials.fromStream(credentialsStream);
         } catch (final IOException e) {
             throw new IllegalStateException("could not read credentials");
         }

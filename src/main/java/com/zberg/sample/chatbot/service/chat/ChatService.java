@@ -2,6 +2,6 @@ package com.zberg.sample.chatbot.service.chat;
 
 public interface ChatService {
 
-    Response sendMessage(final String text, final String sessionId, final String language) throws ChatException;
+    Response sendMessage(String text, String sessionId, String language) throws ChatException;
 
 }

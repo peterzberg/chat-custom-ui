@@ -54,7 +54,8 @@ public class AgencyInfoResponseHandler implements ResponseHandler {
 
     private AbstractResponse buildFallbackTextResponse(final String cityName) {
 
-        final String text = "Leider habe ich zu Agentur '" + cityName + "' nichts gefunden."; // TODO: Lookup from resource file by language with multiple options to look smarter
+        final String text = "Leider habe ich zu Agentur '" + cityName + "' nichts gefunden.";
+        // TODO: Lookup from resource file by language with multiple options to look smarter
         final TextResponse textResponse = new TextResponse();
         textResponse.setText(Collections.singletonList(text));
         return textResponse;

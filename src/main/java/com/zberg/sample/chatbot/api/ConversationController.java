@@ -27,7 +27,9 @@ public class ConversationController {
     }
 
     @PostMapping(path = "{id}/{lang}/message", produces = "application/json")
-    public ResponseEntity<String> sendMessage(@PathVariable("id") final String id, @PathVariable("lang") final String language, @RequestBody final Message message) {
+    public ResponseEntity<String> sendMessage(@PathVariable("id") final String id,
+                                              @PathVariable("lang") final String language,
+                                              @RequestBody final Message message) {
 
         try {
             return ResponseEntity.ok(conversationService.converse(message.getText(), id, language));

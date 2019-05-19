@@ -15,7 +15,7 @@ public class OpeningHours {
         return wochentag;
     }
 
-    public void setWochentag(String wochentag) {
+    public void setWochentag(final String wochentag) {
 
         this.wochentag = wochentag;
     }
@@ -25,7 +25,7 @@ public class OpeningHours {
         return vormittagVon;
     }
 
-    public void setVormittagVon(String vormittagVon) {
+    public void setVormittagVon(final String vormittagVon) {
 
         this.vormittagVon = vormittagVon;
     }
@@ -35,7 +35,7 @@ public class OpeningHours {
         return vormittagBis;
     }
 
-    public void setVormittagBis(String vormittagBis) {
+    public void setVormittagBis(final String vormittagBis) {
 
         this.vormittagBis = vormittagBis;
     }
@@ -45,7 +45,7 @@ public class OpeningHours {
         return nachmittagVon;
     }
 
-    public void setNachmittagVon(String nachmittagVon) {
+    public void setNachmittagVon(final String nachmittagVon) {
 
         this.nachmittagVon = nachmittagVon;
     }
@@ -55,7 +55,7 @@ public class OpeningHours {
         return nachmittagBis;
     }
 
-    public void setNachmittagBis(String nachmittagBis) {
+    public void setNachmittagBis(final String nachmittagBis) {
 
         this.nachmittagBis = nachmittagBis;
     }

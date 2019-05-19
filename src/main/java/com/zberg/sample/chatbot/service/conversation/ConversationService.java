@@ -11,7 +11,7 @@ import com.zberg.sample.chatbot.service.response.text.AbstractResponse;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ConversationService {
+public final class ConversationService {
 
     private final ChatService chatService;
     private final ResponseHandlerService responseHandlerService;

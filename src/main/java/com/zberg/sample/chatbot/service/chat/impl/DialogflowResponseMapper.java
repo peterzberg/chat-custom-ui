@@ -11,7 +11,7 @@ import com.zberg.sample.chatbot.service.chat.Response;
 import java.util.*;
 import java.util.stream.Collectors;
 
-class DialogflowResponseMapper {
+final class DialogflowResponseMapper {
 
     private DialogflowResponseMapper() {
         //
@@ -27,7 +27,9 @@ class DialogflowResponseMapper {
         chatResponse.setParameters(paramMap);
         chatResponse.setCurrentSlot(currentSlot);
         chatResponse.setAllRequiredParamsSet(queryResult.getAllRequiredParamsPresent());
-        final List<String> messages = queryResult.getFulfillmentMessagesList().stream().flatMap(m -> m.getText().getTextList().stream()).collect(Collectors.toList());
+        final List<String> messages = queryResult.getFulfillmentMessagesList().stream()
+                .flatMap(m -> m.getText().getTextList().stream())
+                .collect(Collectors.toList());
         chatResponse.setText(messages);
         return chatResponse;
     }

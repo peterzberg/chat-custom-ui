@@ -17,7 +17,7 @@ public class AgencyResponse extends AbstractResponse {
         return agency;
     }
 
-    public void setAgency(Agency agency) {
+    public void setAgency(final Agency agency) {
 
         this.agency = agency;
     }

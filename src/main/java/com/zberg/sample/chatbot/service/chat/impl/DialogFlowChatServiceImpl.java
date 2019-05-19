@@ -25,7 +25,6 @@ public class DialogFlowChatServiceImpl implements ChatService {
         projectId = env.getProperty("DIALOGFLOW_PROJECT_ID");
     }
 
-
     @Override
     public Response sendMessage(final String text, final String sessionId, final String language) throws ChatException {
 
@@ -40,7 +39,7 @@ public class DialogFlowChatServiceImpl implements ChatService {
 
         final CredentialsProvider credentialsProvider = FixedCredentialsProvider.create(GoogleCredentialsProvider.get());
         final SessionsSettings sessionSettings = SessionsSettings.newBuilder().setCredentialsProvider(credentialsProvider).build();
-        try (final SessionsClient sessionsClient = SessionsClient.create(sessionSettings)) {
+        try (SessionsClient sessionsClient = SessionsClient.create(sessionSettings)) {
             LOGGER.info("Goint to send message to dialogflow: {}", text);
             final SessionName session = SessionName.of(projectId, sessionId);
             final TextInput textInput = TextInput.newBuilder().setText(text).setLanguageCode(language).build();
