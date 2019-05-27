@@ -30,3 +30,7 @@ But in the end, this is just a PoC :)
 # Progress
 
 API already does something (not much). But we should be able to build the first FE task to handle agency information queries (show google maps, opening hours, closes soon?, ...)
+
+## Prototype
+* UI: [https://swc-mia.firebaseapp.com](https://swc-mia.firebaseapp.com)
+* Deployed backend: [https://dialogflow-css.herokuapp.com/swagger-ui.html](https://dialogflow-css.herokuapp.com/swagger-ui.html)
